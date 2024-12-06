@@ -4,7 +4,7 @@ import './HomePage.css';
 const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
   return (
     <div className="homepage">
-      <h3 id="candidates">Available Bench Candidates</h3>
+      {/* <h3 id="candidates">Available Bench Candidates</h3>
       <div>
         <ul>
           {candidates.length === 0 ? (
@@ -17,10 +17,10 @@ const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
             ))
           )}
         </ul>
-      </div>
+      </div> */}
 
       {/* Conditional rendering for pagination */}
-      {candidates.length > 0 && (
+      {/* {candidates.length > 0 && (
         <div className="pagination">
           {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
             <button
@@ -32,7 +32,7 @@ const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
             </button>
           ))}
         </div>
-      )}
+      )} */}
 
       {/* Chatbot Section */}
       <div id="chatbot" className="chatbot-container">
