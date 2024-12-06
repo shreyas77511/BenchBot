@@ -12,10 +12,17 @@
 # collection = client.create_collection(name="bench_candidates")
 
 # # Set your OpenAI API key
+
+# OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
+
+# # Initialize the OpenAI embeddings model from LangChain
+# embeddings_model = OpenAIEmbeddings(api_key=os.getenv("OPENAI_API_KEY"))
+=======
 # OPENAI_API_KEY= 'Add key'
 
 # # Initialize the OpenAI embeddings model from LangChain
 # embeddings_model = OpenAIEmbeddings(api_key=OPENAI_API_KEY)
+
 
 # # Load Excel Data
 # def load_excel_to_documents(file_path):
@@ -77,9 +84,17 @@
 # # Example Usage
 
 # # 1. Load and store Excel file
+
+# file_path = './fin_ed_docs'
+=======
 # file_path = 'C:/Users/GirishSable/Downloads/Copy of Bench report as on 22nd Nov.xlsx'
+
 # process_uploaded_file(file_path)
 
 # # 2. Query the Chroma database
 # query_text = "What is the skillset of candidate X?"  # Your query text
 # query_chroma(query_text)
+
+
+
+
