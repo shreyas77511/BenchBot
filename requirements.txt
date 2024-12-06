@@ -1,0 +1,9 @@
+langchain
+langchain-community
+pandas
+openai
+openpyxl
+python-dotenv
+chainlit
+pinecone-client
+faiss-cpu

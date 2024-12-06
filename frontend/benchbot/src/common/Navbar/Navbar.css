@@ -1,0 +1,41 @@
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #022449;
+    color: white;
+    padding: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navbar content wrapper */
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    max-width: 1200px;
+  }
+  
+  /* Logo on the left */
+  .navbar-logo {
+    /* height: 50px; */
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  /* Heading in the center */
+  .navbar-heading {
+    font-size: 1.5em;
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  /* Welcome message on the right */
+  .navbar-welcome {
+    font-size: 1em;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  
