@@ -5,13 +5,15 @@ import Navbar from './common/Navbar/Navbar';
 import Footer from './common/Footer/Footer';
 import axios from 'axios'; 
 
+
 function App() {
   const [candidates, setCandidates] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const candidatesPerPage = 5;
 
   useEffect(() => {
-    axios.get('http://localhost:8501') 
+    console.log("urll:",process.env.REACT_APP_BASE_URL)
+    axios.get(`${process.env.REACT_BASE_URL}`) 
       .then(response => {
         const indexOfLastCandidate = currentPage * candidatesPerPage;
         const indexOfFirstCandidate = indexOfLastCandidate - candidatesPerPage;
