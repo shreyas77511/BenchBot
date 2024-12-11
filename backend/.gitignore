@@ -1,0 +1,8 @@
+.env
+__pycache__/
+.chainlit/
+venv
+new_venv
+venv3
+testvenv2
+testvenv4

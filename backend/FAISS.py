@@ -52,7 +52,7 @@ def initialize_vectorstore(documents):
     return vectorstore
 
 # Step 4: Load Data and Create Vectorstore
-excel_file_path = "./fin_ed_docs/testtsss.xlsx"  # Correct file path
+excel_file_path = "./fin_ed_docs/Test3.xlsx"  # Correct file path
 documents = load_excel_to_documents(excel_file_path)
 vectorstore = initialize_vectorstore(documents)
 
@@ -64,7 +64,7 @@ async def on_chat_start():
 
     # Set up retrieval-based chain using the API key from the environment variable
     chain = ConversationalRetrievalChain.from_llm(
-        llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, api_key=OPENAI_API_KEY),
+        llm=ChatOpenAI(model_name="gpt-4", temperature=0, api_key=OPENAI_API_KEY),
         retriever=vectorstore.as_retriever(),
         memory=memory,
     )
