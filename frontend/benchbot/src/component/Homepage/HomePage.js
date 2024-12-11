@@ -4,7 +4,7 @@ import './HomePage.css';
 const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
   return (
     <div className="homepage">
-      {/* <h3 id="candidates">Available Bench Candidates</h3>
+       {/* <h3 id="candidates">Available Bench Candidates</h3>
       <div>
         <ul>
           {candidates.length === 0 ? (
@@ -17,7 +17,7 @@ const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
             ))
           )}
         </ul>
-      </div> */}
+      </div>  */}
 
       {/* Conditional rendering for pagination */}
       {/* {candidates.length > 0 && (
@@ -36,7 +36,7 @@ const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
 
       {/* Chatbot Section */}
       <div id="chatbot" className="chatbot-container">
-        <h3>Chat with BenchBot:</h3>
+        {/* <h3>Chat with BenchBot:</h3> */}
         <iframe
           src="http://localhost:8000" // Chainlit URL
           width="100%"

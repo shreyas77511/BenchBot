@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import HomePage from './component/HomePage';
+import HomePage from './component/Homepage/HomePage';
 import Navbar from './common/Navbar/Navbar';
 import Footer from './common/Footer/Footer';
 import axios from 'axios'; 
