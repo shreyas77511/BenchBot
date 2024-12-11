@@ -73,7 +73,7 @@ def load_excel_to_documents(file_path):
 
 # Step 5: Initialize Vectorstore
 def initialize_vectorstore(documents):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
     split_docs = text_splitter.split_documents(documents)
     
     # Use langchain_community.vectorstores.Pinecone's from_documents method
@@ -81,7 +81,7 @@ def initialize_vectorstore(documents):
     return vectorstore
 
 # Step 6: Load Data and Create Vectorstore
-excel_file_path = "./fin_ed_docs/testtsss.xlsx"
+excel_file_path = "./fin_ed_docs/Test3.xlsx"
 documents = load_excel_to_documents(excel_file_path)
 vectorstore = initialize_vectorstore(documents)
 
@@ -89,10 +89,27 @@ vectorstore = initialize_vectorstore(documents)
 
 
 # Step 7: Set up Prompt Template
-prompt_template = """You are a chatbot who answers questions based on the people who are on the bench. 
+prompt_template = """
+You are a chatbot designed to answer questions based on employee data stored in a knowledge base.
+The data includes:
+- Employee ID, Employee Name, Employee Type
+- Title as per headcount, Employee Location, Delivery Location
+- Employee Status, Billable Category, Department, Sub-department
+- Customer Name, Project Name, Roll-off Date, Bench Start Date
+- Total Experience, Last Working Day, Vendor Name
+
+
+
+When experience is asked please refer the skillsets primary and  skillsets secondary, with dbiz experience and total experience.
+
+Whenever you are giving date format please mention the month while giving response!
+
+Use the provided context to answer questions accurately and concisely with breif description. If the question cannot be answered based on the context, say: "I could not find relevant information."
+
 Question: {question}
 Context: {context}
 """
+
 prompt = PromptTemplate(input_variables=["question", "context"], template=prompt_template)
 
 # Step 8: Set up Chainlit Bot

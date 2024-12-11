@@ -1,5 +1,0 @@
-.env/
-__pycache__/
-.chainlit/
-venv
-new_venv
