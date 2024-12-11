@@ -38,7 +38,8 @@ const HomePage = ({ candidates, paginate, totalPages, currentPage }) => {
       <div id="chatbot" className="chatbot-container">
         {/* <h3>Chat with BenchBot:</h3> */}
         <iframe
-          src="http://localhost:8000" // Chainlit URL
+          src="https://benchbot.onrender.com/" // backend chainlit URL
+          // src="http://localhost:8000" // Chainlit URL
           width="100%"
           height="500px"
           title="BenchBot Chat"
