@@ -1,14 +1,14 @@
-import pandas as pd
+import os
+import chainlit as cl
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Pinecone  # Correct import for Pinecone
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.memory import ConversationBufferMemory
-import chainlit as cl
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
-import os
+import pandas as pd
 from dotenv import load_dotenv
 from pinecone import Pinecone as OfficialPinecone, ServerlessSpec  # Official Pinecone client for low-level tasks
 
@@ -20,9 +20,6 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_ENV = os.getenv("PINECONE_ENV")
 
 # Ensure environment variables are loaded correctly
-print("this is pinecone api:", PINECONE_API_KEY)
-print("this is pinecone env:", PINECONE_ENV)
-
 if not OPENAI_API_KEY or not PINECONE_API_KEY or not PINECONE_ENV:
     raise ValueError("API key(s) not found. Please make sure the .env file contains the necessary API keys.")
 
@@ -33,7 +30,6 @@ index_name = "quickstart"
 
 # Step 3: Initialize embeddings model
 embeddings_model = OpenAIEmbeddings(api_key=OPENAI_API_KEY)
-
 
 if index_name in pc.list_indexes().names():
     pc.delete_index(index_name)
@@ -52,11 +48,6 @@ pc.create_index(
 index_info = pc.describe_index(index_name)
 if index_info["dimension"] != 1536:
     raise ValueError(f"Index creation failed. Expected dimension 1536 but got {index_info['dimension']}.")
-
-# Re-upload documents to the new index
-
-
-
 
 # Step 4: Load Excel Data and Convert to Documents
 def load_excel_to_documents(file_path):
@@ -85,9 +76,6 @@ excel_file_path = "./fin_ed_docs/Test3.xlsx"
 documents = load_excel_to_documents(excel_file_path)
 vectorstore = initialize_vectorstore(documents)
 
-# vectorstore = Pinecone.from_documents(documents= split_docs, embedding=embeddings_model, index_name=index_name)
-
-
 # Step 7: Set up Prompt Template
 prompt_template = """
 You are a chatbot designed to answer questions based on employee data stored in a knowledge base.
@@ -98,13 +86,11 @@ The data includes:
 - Customer Name, Project Name, Roll-off Date, Bench Start Date
 - Total Experience, Last Working Day, Vendor Name
 
-
-
 When experience is asked please refer the skillsets primary and  skillsets secondary, with dbiz experience and total experience.
 
 Whenever you are giving date format please mention the month while giving response!
 
-Use the provided context to answer questions accurately and concisely with breif description. If the question cannot be answered based on the context, say: "I could not find relevant information."
+Use the provided context to answer questions accurately and concisely with a brief description. If the question cannot be answered based on the context, say: "I could not find relevant information."
 
 Question: {question}
 Context: {context}
@@ -140,3 +126,14 @@ async def main(message: cl.Message):
     source_docs = response.get("source_documents", [])
     source_text = "\n".join([f"- {doc.metadata['source']}" for doc in source_docs]) if source_docs else "(No sources found)"
     await cl.Message(content=f"{answer}\n\nSources:\n{source_text}").send()
+
+if __name__ == "__main__":
+    # Explicitly set the host and port for deployment
+    host = "0.0.0.0"
+    port = int(os.getenv("PORT", "8000"))  # Use Render's PORT or default to 5000
+
+    print(f"Starting Chainlit app on host: {host} and port: {port}")
+    
+    # Start the Chainlit application
+    cl.run(host=host, port=port)
+
