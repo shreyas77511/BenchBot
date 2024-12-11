@@ -145,6 +145,6 @@ if __name__ == "__main__":
     # Get the PORT from the environment variable (Render provides this)
     PORT = int(os.getenv("PORT", 5000))  # Default to 5000 if PORT is not set
 
-    # Run the Chainlit app, binding to 0.0.0.0 and the correct port
+
     cl.run(host="0.0.0.0", port=PORT)
 
