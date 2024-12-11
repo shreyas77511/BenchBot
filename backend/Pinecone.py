@@ -72,7 +72,7 @@ def initialize_vectorstore(documents):
     return vectorstore
 
 # Step 6: Load Data and Create Vectorstore
-excel_file_path = "./fin_ed_docs/Test3.xlsx"
+excel_file_path = os.path.join(os.path.dirname(__file__), "fin_ed_docs", "Test3.xlsx")
 documents = load_excel_to_documents(excel_file_path)
 vectorstore = initialize_vectorstore(documents)
 
