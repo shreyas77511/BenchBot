@@ -139,4 +139,12 @@ def chat():
     return jsonify({"answer": response["answer"], "sources": response.get("source_documents", [])})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    import os
+    import chainlit as cl
+
+    # Get the PORT from the environment variable (Render provides this)
+    PORT = int(os.getenv("PORT", 5000))  # Default to 5000 if PORT is not set
+
+    # Run the Chainlit app, binding to 0.0.0.0 and the correct port
+    cl.run(host="0.0.0.0", port=PORT)
+
