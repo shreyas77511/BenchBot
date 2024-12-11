@@ -128,12 +128,12 @@ async def main(message: cl.Message):
     await cl.Message(content=f"{answer}\n\nSources:\n{source_text}").send()
 
 if __name__ == "__main__":
-    # Explicitly set the host and port in environment variables for Render deployment
-    os.environ["CHAINLIT_HOST"] = "0.0.0.0"  # Bind to all network interfaces
-    os.environ["CHAINLIT_PORT"] = os.getenv("PORT", "5000")  # Use Render's PORT variable or default to 5000
-    
-    print(f"Binding to host: {os.getenv('CHAINLIT_HOST')}")
-    print(f"Binding to port: {os.getenv('CHAINLIT_PORT')}")
+    # Explicitly set the host and port for deployment
+    host = "0.0.0.0"
+    port = int(os.getenv("PORT", "5000"))  # Use Render's PORT or default to 5000
 
+    print(f"Starting Chainlit app on host: {host} and port: {port}")
+    
     # Start the Chainlit application
-    cl.run()
+    cl.run(host=host, port=port)
+
