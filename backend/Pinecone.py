@@ -130,7 +130,7 @@ async def main(message: cl.Message):
 if __name__ == "__main__":
     # Explicitly set the host and port for deployment
     host = "0.0.0.0"
-    port = int(os.getenv("PORT", "5000"))  # Use Render's PORT or default to 5000
+    port = int(os.getenv("PORT", "8000"))  # Use Render's PORT or default to 5000
 
     print(f"Starting Chainlit app on host: {host} and port: {port}")
     
